@@ -14,13 +14,22 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     # Your code here. You'll need to vectorise your implementation to ensure it runs # at a reasonable speed.
     kernel = np.flip(kernel)
 
+    if image.ndim == 2:
+        channels = 1
+    else:
+        channels = 3
+
     cimage = np.zeros(image.shape)
-    rows, cols = image.shape
+    rows, cols = image.shape[:2]
     trows, tcols = kernel.shape
     tr, tc = trows//2, tcols//2
-
-    for x in range(tc, cols-tc):
-        for y in range(tr, rows-tr):
-            cimage[y, x] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1]).sum()
+    
+    for ch in range(channels): 
+        for x in range(tc, cols-tc):
+            for y in range(tr, rows-tr):
+                if channels == 1:
+                    cimage[y, x] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1, ch]).sum()
+                else:
+                    cimage[y, x, ch] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1, ch]).sum()
 
     return cimage
