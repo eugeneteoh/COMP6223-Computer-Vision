@@ -1,5 +1,4 @@
 import numpy as np
-from scipy.signal import convolve2d
 
 def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray: 
     """
@@ -28,7 +27,7 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
         for x in range(tc, cols-tc):
             for y in range(tr, rows-tr):
                 if channels == 1:
-                    cimage[y, x] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1, ch]).sum()
+                    cimage[y, x] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1]).sum()
                 else:
                     cimage[y, x, ch] = (kernel * image[y-tr:y+tr+1, x-tc:x+tc+1, ch]).sum()
 
