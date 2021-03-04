@@ -1,5 +1,6 @@
 import math
 import numpy as np
+
 from MyConvolution import convolve
 
 def myHybridImages(lowImage: np.ndarray, lowSigma: float, highImage: np.ndarray, highSigma: float) -> np.ndarray:
@@ -21,7 +22,13 @@ def myHybridImages(lowImage: np.ndarray, lowSigma: float, highImage: np.ndarray,
         :rtype numpy.ndarray
     """
     # Your code here.
-    
+    lowfImage = convolve(lowImage/255, makeGaussianKernel(lowSigma))
+    # cv2.imwrite('low.bmp', lowfImage * 255)
+    highfImage = (highImage / 255) - convolve(highImage/255, makeGaussianKernel(highSigma))
+    # cv2.imwrite('high.bmp', (highfImage + 0.5) * 255)
+
+    return (lowfImage + highfImage) * 255 
+
 
 
 def makeGaussianKernel(sigma: float) -> np.ndarray:
@@ -29,3 +36,13 @@ def makeGaussianKernel(sigma: float) -> np.ndarray:
     Use this function to create a 2D gaussian kernel with standard deviation sigma. The kernel values should sum to 1.0, and the size should be floor(8*sigma+1) or floor(8*sigma+1)+1 (whichever is odd) as per the assignment specification.
     """
     # Your code here.
+    size = int(8.0 * sigma + 1.0)
+    if (size % 2 == 0): size += 1
+
+    ax = np.linspace(-(size-1)/2, (size-1)/2, size)
+    xx, yy = np.meshgrid(ax, ax)
+
+    kernel = np.exp(-0.5 * (xx**2 + yy**2) / sigma**2)
+
+    return kernel / np.sum(kernel)
+
