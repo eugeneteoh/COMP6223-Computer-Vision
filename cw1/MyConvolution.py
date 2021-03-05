@@ -10,22 +10,22 @@ def convolve(image: np.ndarray, kernel: np.ndarray) -> np.ndarray:
     :returns the convolved image (of the same shape as the input image)
     :rtype numpy.ndarray
     """
-    # Your code here. You'll need to vectorise your implementation to ensure it runs # at a reasonable speed.
-    kernel = np.flip(kernel)
+    kernel = np.flip(kernel) # flip kernel
     rows, cols = image.shape[:2]
     trows, tcols = kernel.shape
     tr, tc = trows//2, tcols//2
 
+    # For gray scale and RBG images
     if image.ndim == 2:
         channels = 1
-        pimage = np.pad(image, ((tr, tr), (tc, tc))) # padded image
+        pimage = np.pad(image, ((tr, tr), (tc, tc))) # padded input image
     else:
         channels = 3
-        pimage = np.pad(image, ((tr, tr), (tc, tc), (0, 0))) # padded image
+        pimage = np.pad(image, ((tr, tr), (tc, tc), (0, 0))) # padded input image
  
     cimage = np.zeros(image.shape)
    
-    for ch in range(channels): 
+    for ch in range(channels): # for each RBG and gray scale channels
         for x in range(0, cols):
             for y in range(0, rows):
                 if channels == 1:
