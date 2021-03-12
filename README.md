@@ -1,6 +1,6 @@
-# COMP6223
+# COMP6223 Computer Vision
 
-University of Southampton COMP6223 Computer Vision (MSc) 2020-2021
+University of Southampton COMP6223 Computer Vision (MSc) 2020-2021 Courseworks and Exercises.
 
 ## Contents
 
