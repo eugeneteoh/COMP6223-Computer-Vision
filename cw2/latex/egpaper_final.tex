@@ -54,11 +54,11 @@ This report presents the results and findings for the tasks stated in COMP6223 c
 
 \section{Viola-Jones Object Detector}
 
-Viola-Jones, or Haar Cascade face detector was proposed by Viola and Jones~\cite{viola-jones} in 2001. The framework uses three main concepts, namely: ``Integral Image'', AdaBoost feature selector and cascade classifier.
+Viola-Jones, or Haar Cascade face detector was proposed by Viola and Jones~\cite{viola-jones} in 2001. The framework uses three main concepts, namely: ``Integral Image'', AdaBoost feature selection and cascade classifier.
 
 First, a subwindow (originally 24 $\times$ 24) is chosen. Within the subwindow, the author proposed the use of four Haar-like features to match every pixel. In a 24 $\times$ 24 subwindow, there exist a set of over 160,000 features. The subwindow is shifted over the the image, similar to a convolution operation.
 
-Integral Image was proposed to be able to calculate the sum of values of a block of pixels in linear time, more specifically 4 steps. This is important for the calculation of the Haar-like features as there are too many features.
+Integral Image was proposed to be able to calculate the sum of values of a block of pixels in linear time, more specifically in just 4 steps. This will significantly improve the speed of calculation of the 160,000 Haar-like features.
 
 Next, AdaBoost, a boosting algorithm which transforms a set of weak classifiers into a strong classifier, is then used to select a smaller set of features with the largest weights.
 
@@ -71,7 +71,7 @@ Finally, the features selected is then ordered in a cascade of classifiers, more
 
 Subversion of the Viola-Jones face detector can be done by camouflaging face components. There are two main types of camouflage: concealment and deception \cite{facilitating-fashion-camouflage-art}. Both types of camouflage can be performed by occlusion, face paints, accessories (hat, glasses), jewellery and more.
 
-Humans faces consist of five major face components: face shape, right and left eyes, right and left eyebrows, nose and lip. All the face components stated above can be camouflaged with different tools. The sections below explore the effective camouflages for different face components. Other miscellaneous approaches for effective camouflages will also be explored in \cref{sec:miscellaneous}. It should be noted that camouflages for the lips was not found, thus will not be discussed in this section.
+Human faces consist of five major face components: face shape, eyes, eyebrows, nose and lip. All the face components stated above can be camouflaged with different tools. The sections below explore the effective camouflages for different face components. Other miscellaneous approaches for effective camouflages will also be explored in \cref{sec:miscellaneous}. It should be noted that camouflages for the lips were not found, thus will not be discussed in this section.
 
 Almost all camouflages in this report are added to images of my face using GNU Image Manipulation Program (GIMP)~\cite{gimp}. This is due to the lack of accessories and tools to complete real, physical camouflages.
 
@@ -79,7 +79,7 @@ Almost all camouflages in this report are added to images of my face using GNU I
 
 \subsection{Face Shape} \label{sec:face-shape}
 
-\cref{fig:face-shape} shows an example of camouflage which attempts to modify the shape of the face. The camouflage used includes a face mask to deceive the chin area, a wig do alter the overall face structure, and a turban to change the forehead shape. The goal of the camouflage introduced is to modify the face shape into a non-round shape by introducing edges and curved surfaces. This approach of camouflage is proved to be effective in \cite{facilitating-fashion-camouflage-art}
+\cref{fig:face-shape} shows an example of camouflage which attempts to modify the shape of the face. The camouflage used includes a face mask to deceive the chin area, a wig do alter the overall face structure, and a turban to change the forehead shape. The goal of the camouflage introduced is to modify the face shape into a non-round shape by introducing edges and curved surfaces.
 
 Through empirical findings, it was difficult to find camouflages that was able to deceive the face detector with face shapes. The Viola-Jones algorithm might not have many features that emphasises on the face shapes.
 
